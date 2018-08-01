@@ -5,7 +5,7 @@ Complete engine_race/engine_race.[h,cc], and execute
 ```
 make
 ```
-to build you own engine
+to build your own engine
 
 ## Example for you
 
