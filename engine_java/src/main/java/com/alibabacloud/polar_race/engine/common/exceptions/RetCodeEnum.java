@@ -1,6 +1,5 @@
 package com.alibabacloud.polar_race.engine.common.exceptions;
 /**
- * For Polar race.
  * RetCodeEnum define some return code.
  *
  */

@@ -11,10 +11,10 @@ import com.alibabacloud.polar_race.engine.common.exceptions.EngineException;
 public abstract class AbstractEngine {
 	/**
 	 * open Engine
-	 * @param name engine name
+	 * @param path the path of engine store data. 
 	 * @throws EngineException 
 	 */
-	public abstract void open(String name) throws EngineException;
+	public abstract void open(String path) throws EngineException;
 	
 	/**
 	 * close Engine
