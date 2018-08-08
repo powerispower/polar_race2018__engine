@@ -40,6 +40,10 @@ RetCode EngineRace::Read(const std::string& key, std::string* value) {
 // 5. Applies the given Vistor::Visit function to the result
 // of every key-value pair in the key range [first, last),
 // in order
+// lower=="" is treated as a key before all keys in the database.
+// upper=="" is treated as a key after all keys in the database.
+// Therefore the following call will traverse the entire database:
+//   Range("", "", visitor)
 RetCode EngineRace::Range(const std::string& lower, const std::string& upper,
     Visitor &visitor) {
   return kSucc;
