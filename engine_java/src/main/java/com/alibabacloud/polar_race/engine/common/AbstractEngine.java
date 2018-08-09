@@ -27,7 +27,7 @@ public abstract class AbstractEngine {
 	 * @param value
 	 * @throws EngineException
 	 */
-	public abstract void write(String key, String value) throws EngineException;
+	public abstract void write(byte[] key, byte[] value) throws EngineException;
 	
 	/**
 	 * read value of a key
@@ -35,7 +35,7 @@ public abstract class AbstractEngine {
 	 * @return value
 	 * @throws EngineException
 	 */
-	public abstract String read(String key) throws EngineException;
+	public abstract byte[] read(byte[] key) throws EngineException;
 	
 	/**
 	 * applies the given AbstractVisitor.Visit() function to the result of every key-value pair in the key range [first, last),
@@ -45,7 +45,7 @@ public abstract class AbstractEngine {
 	 * @param visitor is check key-value pair,you just call visitor.visit(String key, String value) function in your own engine.
 	 * @throws EngineException
 	 */
-	public abstract void range(String lower, String upper, AbstractVisitor visitor) throws EngineException;
+	public abstract void range(byte[] lower, byte[] upper, AbstractVisitor visitor) throws EngineException;
 	
 	
 }
