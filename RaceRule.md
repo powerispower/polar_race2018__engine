@@ -101,7 +101,7 @@ ulimit -a：
 
 磁盘占用不得超过：不限制
 
-允许使用的第三方库：snappy、lz4、libaio
+允许使用的第三方库：snappy、lz4
 
 ### 9. 作弊说明
 
