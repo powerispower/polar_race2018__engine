@@ -141,7 +141,7 @@ RetCode DoorPlate::GetRangeLocation(const std::string& lower,
     const std::string& upper,
     std::map<std::string, Location> *locations) {
   int count = 0;
-  for (Item *it = items_ + kMaxDoorCnt; it >= items_; it--) {
+  for (Item *it = items_ + kMaxDoorCnt - 1; it >= items_; it--) {
     if (!it->in_use) {
       continue;
     }
