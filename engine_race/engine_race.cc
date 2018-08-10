@@ -28,12 +28,12 @@ EngineRace::~EngineRace() {
 }
 
 // 3. Write a key-value pair into engine
-RetCode EngineRace::Write(const std::string& key, const std::string& value) {
+RetCode EngineRace::Write(const PolarString& key, const PolarString& value) {
   return kSucc;
 }
 
 // 4. Read value of a key
-RetCode EngineRace::Read(const std::string& key, std::string* value) {
+RetCode EngineRace::Read(const PolarString& key, std::string* value) {
   return kSucc;
 }
 
@@ -44,7 +44,7 @@ RetCode EngineRace::Read(const std::string& key, std::string* value) {
 // upper=="" is treated as a key after all keys in the database.
 // Therefore the following call will traverse the entire database:
 //   Range("", "", visitor)
-RetCode EngineRace::Range(const std::string& lower, const std::string& upper,
+RetCode EngineRace::Range(const PolarString& lower, const PolarString& upper,
     Visitor &visitor) {
   return kSucc;
 }

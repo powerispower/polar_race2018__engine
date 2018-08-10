@@ -21,14 +21,14 @@ class EngineExample : public Engine  {
 
   ~EngineExample();
 
-  RetCode Write(const std::string& key,
-      const std::string& value) override;
+  RetCode Write(const PolarString& key,
+      const PolarString& value) override;
 
-  RetCode Read(const std::string& key,
+  RetCode Read(const PolarString& key,
       std::string* value) override;
 
-  RetCode Range(const std::string& lower,
-      const std::string& upper,
+  RetCode Range(const PolarString& lower,
+      const PolarString& upper,
       Visitor &visitor) override;
 
  private:

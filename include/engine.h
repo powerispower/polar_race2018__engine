@@ -2,6 +2,7 @@
 #ifndef INCLUDE_ENGINE_H_
 #define INCLUDE_ENGINE_H_
 #include <string>
+#include "polar_string.h"
 
 namespace polar_race {
 
@@ -23,7 +24,7 @@ class Visitor {
  public:
   virtual ~Visitor() {}
 
-  virtual void Visit(const std::string &key, const std::string &value) = 0;
+  virtual void Visit(const PolarString &key, const PolarString &value) = 0;
 };
 
 class Engine {
@@ -38,11 +39,11 @@ class Engine {
   virtual ~Engine();
 
   // Write a key-value pair into engine
-  virtual RetCode Write(const std::string& key,
-      const std::string& value) = 0;
+  virtual RetCode Write(const PolarString& key,
+      const PolarString& value) = 0;
 
   // Read value of a key
-  virtual RetCode Read(const std::string& key,
+  virtual RetCode Read(const PolarString& key,
       std::string* value) = 0;
 
   // Applies the given Vistor::Visit function to the result
@@ -52,8 +53,8 @@ class Engine {
   // upper=="" is treated as a key after all keys in the database.
   // Therefore the following call will traverse the entire database:
   //   Range("", "", visitor)
-  virtual RetCode Range(const std::string& lower,
-      const std::string& upper,
+  virtual RetCode Range(const PolarString& lower,
+      const PolarString& upper,
       Visitor &visitor) = 0;
 };
 

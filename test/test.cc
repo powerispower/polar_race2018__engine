@@ -15,8 +15,8 @@ public:
 
   ~DumpVisitor() {}
 
-  void Visit(const std::string &key, const std::string &value) {
-    printf("Visit %s --> %s\n", key.c_str(), value.c_str());
+  void Visit(const PolarString& key, const PolarString& value) {
+    printf("Visit %s --> %s\n", key.data(), value.data());
     (*key_cnt_)++;
   }
   
