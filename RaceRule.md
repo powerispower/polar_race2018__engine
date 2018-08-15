@@ -25,12 +25,12 @@ C++ & JAVA
 
 **1. 请完善我们已经定义好的子类EngineRace即可，不需要额外继承基类，否则评测程序可能会找不到实现代码**
 
-**2. 调试日志信息请使用标准输出，评测程序会将标准输出重定向到日志文件user_debug_file并放到OSS上供参赛者查看，仅保留最近一次运行日志，最大100M，日志下载路径为：......**
+**2. 调试日志信息请使用标准输出，评测程序会将标准输出重定向到日志文件user_debug_file并放到OSS上供参赛者查看，仅保留最近一次运行日志，最大100M，日志下载方法为：wget http://polardbrace.oss-cn-shanghai.aliyuncs.com/log_TEAMID.tar (替换TEAMID为自己ID即可)**
 
 ### 4. 参赛方法说明
 
 1. 在阿里天池找到"POLARDB 数据库性能大赛"，并报名参加
-2. 在code.aliyun.com注册一个账号，fork本仓库的代码，重写EngineRace类中相关函数的实现
+2. 在code.aliyun.com注册一个账号，fork本仓库的代码（**将polar_race2018添加为Reporter，否则测试程序没有权限拉取代码**），重写EngineRace类中相关函数的实现
 3. 在天池提交成绩的入口，提交自己fork的仓库git地址**（提交时在“镜像路径”一栏填写自己的开发语言，CPP或者JAVA，大小写不限）** 
 4. 等待评测结果
 
@@ -83,7 +83,7 @@ ulimit -a：
 
    2.2 随机读取：32个线程并发随机读取，每个线程各使用Read读取100万次随机数据
 
-   2.3 顺序读取：32个线程并发顺序读取，每个线程使用Range全局顺序迭代DB数据10次
+   2.3 顺序读取：32个线程并发顺序读取，每个线程使用Range全局**顺序**迭代DB数据10次
 
    **注：共3个维度测试性能，每一个维度测试结束后会保留DB数据，关闭Engine实例，清空PageCache，下一个维度开始后重新打开新的Engine实例**
 
@@ -91,17 +91,21 @@ ulimit -a：
 
 在正确性验证通过的情况下，对性能评测整体计时，根据总用时从低到高进行排名（用时越短排名越靠前）
 
-**注：每次评测结束后，评测程序会将性能评测的结果输出到benchmark_result_file文件（内包含每个维度测试的详细结果信息，如ops，最大内存使用），和日志文件user_debug_file一起打包上传到OSS供参赛者查看，仅保留最近一次运行结果信息，下载路径为：......**
+**注：每次评测结束后，评测程序会将性能评测的结果输出到benchmark_result_file文件（内包含每个维度测试的详细结果信息，如ops，最大内存使用），和日志文件user_debug_file一起打包上传到OSS供参赛者查看，仅保留最近一次运行结果信息，日志下载方法为：wget http://polardbrace.oss-cn-shanghai.aliyuncs.com/log_TEAMID.tar (替换TEAMID为自己ID即可)**
 
 ### 8. 资源限制
 
 *（暂定如下：根据内部赛情况会做调整）*
 
-内存占用不得超过：2G
+内存占用不得超过：2G（C++), 2.5G(JAVA)
 
 磁盘占用不得超过：不限制
 
 允许使用的第三方库：snappy、lz4
+
+### 8. 性能自测
+为了方便参赛者自测性能，我们开放了评测程序样例（简化版），[benchmark_example](https://code.aliyun.com/polar_race2018/benchmark_example?spm=a2111a.8458726.0.0.6c6c7a7fekowde)
+
 
 ### 9. 作弊说明
 
