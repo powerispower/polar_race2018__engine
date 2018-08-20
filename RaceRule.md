@@ -77,7 +77,7 @@ JAVA JVM参数（已针对比赛场景进行了调优）:
 -XX:NewRatio=1 
 -XX:+UseConcMarkSweepGC 
 -XX:+UseParNewGC 
--XX:+UseBiasedLocking 
+-XX:-UseBiasedLocking 
 ```
 
 ### 6. 程序评测逻辑
