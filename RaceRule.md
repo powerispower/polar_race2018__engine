@@ -67,7 +67,18 @@ ulimit -a：
 -N 15:                              unlimited
 ```
 
+JAVA JVM参数（已针对比赛场景进行了调优）:
 
+```
+-server
+-Xms2560m 
+-Xmx2560m 
+-XX:MaxDirectMemorySize=2560m 
+-XX:NewRatio=1 
+-XX:+UseConcMarkSweepGC 
+-XX:+UseParNewGC 
+-XX:+UseBiasedLocking 
+```
 
 ### 6. 程序评测逻辑
 
