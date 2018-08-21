@@ -67,7 +67,15 @@ ulimit -a：
 -N 15:                              unlimited
 ```
 
-JAVA JVM参数（已针对比赛场景进行了调优）:
+JDK：
+
+```
+java version "1.8.0_152"
+OpenJDK Runtime Environment (Alibaba 8.4.8) (build 1.8.0_152-b211)
+OpenJDK 64-Bit Server VM (Alibaba 8.4.8) (build 25.152-b211, mixed mode)
+```
+
+Java JVM参数（已针对比赛场景进行了调优）:
 
 ```
 -server
