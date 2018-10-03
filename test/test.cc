@@ -64,8 +64,6 @@ int main() {
   // ret = engine->Range("b", "", vistor);
   // assert (ret == kSucc);
   // printf("Range key cnt: %d\n", key_cnt);
-  
-
   delete engine_read;
 
   return 0;
