@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string>
+#include <iostream>
 #include "include/engine.h"
 
 static const char kEnginePath[] = "/tmp/test_engine";
@@ -42,22 +43,30 @@ int main() {
   assert (ret == kSucc);
 
   ret = engine->Write("ccd", "cbbbbbbbbbbbb");
+  delete engine;
+
+  Engine *engine_read = NULL;
+  ret = Engine::Open(kEnginePath, &engine_read);
+  
   std::string value;
-  ret = engine->Read("aaa", &value);
+  ret = engine_read->Read("aaa", &value);
+  
   printf("Read aaa value: %s\n", value.c_str());
   
-  ret = engine->Read("bbb", &value);
+  ret = engine_read->Read("bbb", &value);
+  //std::cout << ret << "\n";
   assert (ret == kSucc);
+  //std:: cout << value.size() << value << "\n";
   printf("Read bbb value: %s\n", value.c_str());
 
-  int key_cnt = 0;
-  DumpVisitor vistor(&key_cnt);
-  ret = engine->Range("b", "", vistor);
-  assert (ret == kSucc);
-  printf("Range key cnt: %d\n", key_cnt);
+  // int key_cnt = 0;
+  // DumpVisitor vistor(&key_cnt);
+  // ret = engine->Range("b", "", vistor);
+  // assert (ret == kSucc);
+  // printf("Range key cnt: %d\n", key_cnt);
   
 
-  delete engine;
+  delete engine_read;
 
   return 0;
 }

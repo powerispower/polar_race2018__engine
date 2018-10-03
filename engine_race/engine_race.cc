@@ -1,7 +1,10 @@
 // Copyright [2018] Alibaba Cloud All rights reserved
+#include <iostream>
 #include "engine_race.h"
+#include "util.h"
 
 namespace polar_race {
+
 
 RetCode Engine::Open(const std::string& name, Engine** eptr) {
   return EngineRace::Open(name, eptr);
@@ -17,8 +20,13 @@ Engine::~Engine() {
 // 1. Open engine
 RetCode EngineRace::Open(const std::string& name, Engine** eptr) {
   *eptr = NULL;
+  if (!FileExists(name) && 0 != mkdir(name.c_str(), 0755)) {
+    std::cerr << "create dir " << name << " failed\n";
+    return kIOError;
+  }
   EngineRace *engine_race = new EngineRace(name);
-
+  engine_race->mStore.setDir(name);
+  engine_race->mStore.loadIndex(engine_race->memIndex);
   *eptr = engine_race;
   return kSucc;
 }
@@ -29,12 +37,26 @@ EngineRace::~EngineRace() {
 
 // 3. Write a key-value pair into engine
 RetCode EngineRace::Write(const PolarString& key, const PolarString& value) {
-  return kSucc;
+  return mStore.write(key, value);
 }
 
 // 4. Read value of a key
 RetCode EngineRace::Read(const PolarString& key, std::string* value) {
-  return kSucc;
+  std::string realKey;
+  char buf[8];
+  for (size_t i = 0; i < 8; ++i) {
+    if (i < key.size()) {
+      buf[i] = key.data()[i];
+    } else {
+      buf[i] = 0;
+    }
+  }
+  realKey.assign(buf, 8);
+  auto iter = memIndex.find(realKey);
+  if (iter == memIndex.end()) {
+    return kNotFound;
+  }
+  return mStore.readValue(key, iter->second, value);
 }
 
 /*
