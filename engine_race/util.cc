@@ -6,19 +6,17 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 #include <errno.h>
+#include <functional>
 #include "include/engine.h"
 #include "util.h"
 
 namespace polar_race {
 
 uint32_t KeyHash(const char* s, int size) {
-  uint32_t h = 0;
-  while (size > 0) {
-    h = (h * 256 % HASH_NUMBER + s[0]) % HASH_NUMBER;
-    s++;
-    size--;
-  }
-  return h;
+  std::hash<std::string> hash_fn;
+  std::string needToHash;
+  needToHash.assign(s, size);
+  return hash_fn(needToHash) % HASH_NUMBER;
 }
 
 int GetDirFiles(const std::string& dir, std::vector<std::string>* result) {
