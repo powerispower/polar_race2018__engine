@@ -44,13 +44,8 @@ RetCode EngineRace::Write(const PolarString& key, const PolarString& value) {
 RetCode EngineRace::Read(const PolarString& key, std::string* value) {
   std::string realKey;
   char buf[8];
-  for (size_t i = 0; i < 8; ++i) {
-    if (i < key.size()) {
-      buf[i] = key.data()[i];
-    } else {
-      buf[i] = 0;
-    }
-  }
+  memset(buf, 0, sizeof(buf));
+  memcpy(buf, key.data(), key.size());
   realKey.assign(buf, 8);
   auto iter = memIndex.find(realKey);
   if (iter == memIndex.end()) {
