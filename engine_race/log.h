@@ -1,10 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <chrono>
-#include <ctime>
-#include <iomanip>
-#include <iostream>
 #include <sstream>
 
 #define LOG_STREAM ::powerispower::polar_race2018__engine::util::LogMessage(__FILE__, __LINE__).stream()
