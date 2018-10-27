@@ -17,6 +17,14 @@ static std::string IndexFileName(const std::string &dir, uint32_t fileno) {
     return dir + "/index_" + std::to_string(fileno);
 }
 
+static bool indexPairCmp(const std::pair<std::string, std::string> &index1, const std::pair<std::string, std::string> &index2) {
+    return index1.first < index2.first;
+}
+
+static bool indexPairEqual(const std::pair<std::string, std::string> &index1, const std::pair<std::string, std::string> &index2) {
+    return index1.first == index2.first;
+}
+
 // Hash
 uint32_t KeyHash(const char* s, int size);
 

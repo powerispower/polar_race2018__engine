@@ -52,7 +52,7 @@ int GetFileLengthFromFd(const int fd) {
 
 int FileAppend(int fd, const char* buf, size_t value_len) {
   if (fd < 0) {
-    std::cerr << "FileAppend failed fd =  -1\n";
+    std::cout << "FileAppend failed fd =  -1\n";
     return -1;
   }
   const char* pos = buf;
@@ -62,7 +62,7 @@ int FileAppend(int fd, const char* buf, size_t value_len) {
       if (errno == EINTR) {
         continue;  // Retry
       }
-      std::cerr << "FileAppend failed errno = " << errno << "\n";
+      std::cout << "FileAppend failed errno = " << errno << "\n";
       return -1;
     }
     pos += r;

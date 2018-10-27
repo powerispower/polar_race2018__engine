@@ -2,7 +2,7 @@
 #ifndef ENGINE_RACE_ENGINE_RACE_H_
 #define ENGINE_RACE_ENGINE_RACE_H_
 #include <string>
-#include <map>
+#include <vector>
 #include "include/engine.h"
 #include "store.h"
 
@@ -25,7 +25,9 @@ public:
     RetCode Range(const PolarString& lower, const PolarString& upper, Visitor &visitor) override;
 
  private:
-    std::map<std::string, std::string> memIndex;
+
+    Index memIndex;
+
     Store mStore;
 };
 

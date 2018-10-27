@@ -21,7 +21,7 @@ Engine::~Engine() {
 RetCode EngineRace::Open(const std::string& name, Engine** eptr) {
   *eptr = NULL;
   if (!FileExists(name) && 0 != mkdir(name.c_str(), 0755)) {
-    std::cerr << "create dir " << name << " failed\n";
+    std::cout << "create dir " << name << " failed\n";
     return kIOError;
   }
   EngineRace *engine_race = new EngineRace(name);
@@ -47,11 +47,11 @@ RetCode EngineRace::Read(const PolarString& key, std::string* value) {
   memset(buf, 0, sizeof(buf));
   memcpy(buf, key.data(), key.size());
   realKey.assign(buf, 8);
-  auto iter = memIndex.find(realKey);
-  if (iter == memIndex.end()) {
+  std::string index;
+  if (!memIndex.getIndex(realKey, index)) {
     return kNotFound;
   }
-  return mStore.readValue(key, iter->second, value);
+  return mStore.readValue(key, index, value);
 }
 
 /*
